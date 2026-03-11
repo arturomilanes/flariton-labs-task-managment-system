@@ -35,15 +35,20 @@ def main():
                 continue
             for index, task in enumerate(pending_tasks):
                 print(f"{index}. {task['title']}\n")
-            task_index = int(input("Which task would you like to mark as complete? Enter the index: "))
-            completed = task_utils.mark_task_as_complete(task_index)
+            task_index = input("Which task would you like to mark as complete? Enter the index: ")
             print()
-            if completed:
-                print("Task marked as complete!\n")
-            else:
-                print("Failed to mark task as complete. Please check the index and try again.\n")
+            try:
+                completed = task_utils.mark_task_as_complete(int(task_index))
+            
+                
+                if completed:
+                    print("Task marked as complete!\n")
+                else:
+                    print("Failed to mark task as complete. Please check the index and try again.\n")
+                return_to_menu()
 
-            return_to_menu()
+            except ValueError as e:
+                            print("Invalid index. Please provide a valid integer value for the index.\n")
 
         elif choice == "3":
             pending_task = task_utils.view_pending_tasks()

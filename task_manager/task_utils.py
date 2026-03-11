@@ -12,21 +12,19 @@ def add_task(title, description, due_date):
     if (validation.validate_task_title(title) and 
         validation.validate_task_description(description) and 
         validation.validate_due_date(due_date)): 
-         
+
         task = { "title": title,
                 "description": description,
                 "due_date": due_date,
                 "completed": False}
         tasks.append(task)
-        print("Task added successfully!")
+        print("Task added successfully!\n")
     else:
         print("Failed to add task. Please check the input values.")
     
 # Implement mark_task_as_complete function
 def mark_task_as_complete(index, tasks=tasks):
-    if index < 0 or index >= len(tasks):
-        print("Invalid task index.")
-        return
+    validation.validate_task_as_complete(index, len(tasks))
     
     tasks[index]["completed"] = True
     return tasks[index]["completed"]
