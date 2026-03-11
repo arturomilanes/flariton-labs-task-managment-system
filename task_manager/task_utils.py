@@ -1,18 +1,18 @@
 from datetime import datetime
 
 # Import validation functions
-import validation 
+import task_manager.validation as validation
 
 # Define tasks list
-tasks = {"title": "Groceries",
- "description": "Shop at Market Basket for food", 
- "due_date": "2024-06-26",
- "completed": True}
+tasks = []
 
 
 # Implement add_task function
 def add_task(title, description, due_date):
-    if validation.validate_task_title(title) and validation.validate_task_description(description) and validation.validate_due_date(due_date):  
+    if (validation.validate_task_title(title) and 
+        validation.validate_task_description(description) and 
+        validation.validate_due_date(due_date)): 
+         
         task = { "title": title,
                 "description": description,
                 "due_date": due_date,
@@ -29,12 +29,11 @@ def mark_task_as_complete(index, tasks=tasks):
         return
     
     tasks[index]["completed"] = True
-    print("Task marked as complete!")
+    return tasks[index]["completed"]
     
 # Implement view_pending_tasks function
 def view_pending_tasks(tasks=tasks):
     if not tasks:
-        print("No tasks available.")
         return
     pending_tasks=[]
     for task in tasks:
@@ -45,7 +44,6 @@ def view_pending_tasks(tasks=tasks):
 # Implement calculate_progress function
 def calculate_progress(tasks=tasks):
     if not tasks:
-        print("No tasks available.")
         return 
     pending_tasks = view_pending_tasks(tasks)
     total_tasks_count = len(tasks)
