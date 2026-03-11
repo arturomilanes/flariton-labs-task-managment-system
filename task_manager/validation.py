@@ -17,6 +17,10 @@ def validate_due_date(due_date):
     except ValueError:
         raise ValueError("Invalid date format. Please use YYYY-MM-DD.")
     
-def validate_task_as_complete(index, length):
+def validate_index_task_as_complete(index, length):
     if index < 0 or index >= length:
         raise ValueError("Invalid task index. Please provide a valid index.")
+    
+def validate_task_already_completed(index, tasks):
+    if tasks[index]["completed"]:
+        raise ValueError("Task is already completed. Please select a pending task.")

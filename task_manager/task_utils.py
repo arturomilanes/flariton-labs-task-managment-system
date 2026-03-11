@@ -24,7 +24,9 @@ def add_task(title, description, due_date):
     
 # Implement mark_task_as_complete function
 def mark_task_as_complete(index, tasks=tasks):
-    validation.validate_task_as_complete(index, len(tasks))
+    validation.validate_index_task_as_complete(index, len(tasks))
+
+    validation.validate_task_already_completed(index, tasks)
     
     tasks[index]["completed"] = True
     return tasks[index]["completed"]
@@ -50,4 +52,4 @@ def calculate_progress(tasks=tasks):
     progress_decimal = round(completed_tasks_count/total_tasks_count, 2)
 
     progress = progress_decimal * 100
-    return progress
+    return progress, completed_tasks_count
