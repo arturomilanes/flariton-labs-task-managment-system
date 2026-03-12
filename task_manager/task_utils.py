@@ -52,4 +52,4 @@ def calculate_progress(tasks=tasks):
     progress_decimal = round(completed_tasks_count/total_tasks_count, 2)
 
     progress = progress_decimal * 100
-    return progress, completed_tasks_count
+    return progress #, completed_tasks_count

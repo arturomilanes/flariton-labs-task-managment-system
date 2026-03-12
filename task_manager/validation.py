@@ -1,11 +1,17 @@
 from datetime import datetime
 
 def validate_task_title(title):
+    size = len(title)
+    if size > 500:
+        raise ValueError("Title is too long. Please provide a title less than 500 characters.")
     if isinstance(title, str) and title.strip():
         return True
     raise ValueError("Invalid task title. Please provide a non-empty title.")
 
 def validate_task_description(description):
+    
+    if len(description) > 500:
+        raise ValueError("Task description is too long. Please provide a description less than 500 characters.")
     if isinstance(description, str) and description.strip():
         return True
     raise ValueError("Invalid task description. Please provide a non-empty description.")
